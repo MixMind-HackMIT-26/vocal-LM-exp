@@ -1,0 +1,484 @@
+{
+  "model": "google/gemini-3.8-flash",
+  "mode": "combined",
+  "events": [
+    {
+      "kind": "input",
+      "file": "vague.m4a",
+      "evidence": {
+        "features": {
+          "pitch_mean_hz": 124.2,
+          "pitch_sd_hz": 40.9,
+          "loudness_db": -33.5,
+          "pause_ratio": 0.229,
+          "onset_rate_hz": 2.87,
+          "jitter_pct": 0.0,
+          "shimmer_pct": 0.0,
+          "duration_s": 3.14
+        },
+        "axes": [
+          0.5,
+          1.0,
+          1.0
+        ],
+        "weak_acoustic_evidence": false,
+        "decipher_proposal": {
+          "name": "Bright Monday",
+          "rationale": "You spoke softly and you talked quickly, so this is bright and sharp, to keep that going.",
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 55
+            },
+            {
+              "channel": 3,
+              "ml": 20
+            },
+            {
+              "channel": 4,
+              "ml": 40
+            }
+          ],
+          "ml_total": 115,
+          "mood": "bright",
+          "confidence": 0.7
+        }
+      }
+    },
+    {
+      "kind": "model_response",
+      "latency_s": 3.61,
+      "response": {
+        "id": "gen-1789867422-Vu7cQl4XGAZzCVUZ1yUO",
+        "object": "chat.completion",
+        "created": 1789867422,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": "**Adjusting Beverage Profile**\n\nI'm working on making the current recipe more appealing, taking into account the feedback to increase its interest. I've got the initial version, featuring orange juice, grapefruit, and iced tea, and now, I'm considering the potential of a cranberry variant to introduce tartness. The goal is to find the right balance for an engaging beverage.\n\n\n**Refining the Flavor Profile**\n\nI'm now zeroing in on a new recipe! I'm leaning toward incorporating ginger ale for its sparkling complexity. I've been experimenting with the ratios; reducing the orange juice and iced tea while introducing ginger ale at 30-35 ml. I'm focusing on the overall serving size, now. I think I have a final recipe in mind.\n\n\n\n",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_142251",
+                  "function": {
+                    "name": "revise_drink",
+                    "arguments": "{\"expected_version\":0,\"explanation\":\"Added ginger ale for a sparkling, spicy kick to make the blend more dynamic and interesting.\",\"changes\":[{\"ml\":40,\"channel\":1},{\"ml\":20,\"channel\":3},{\"channel\":4,\"ml\":30},{\"channel\":6,\"ml\":35}],\"name\":\"Bright & Bubbly\"}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Adjusting Beverage Profile**\n\nI'm working on making the current recipe more appealing, taking into account the feedback to increase its interest. I've got the initial version, featuring orange juice, grapefruit, and iced tea, and now, I'm considering the potential of a cranberry variant to introduce tartness. The goal is to find the right balance for an engaging beverage.\n\n\n**Refining the Flavor Profile**\n\nI'm now zeroing in on a new recipe! I'm leaning toward incorporating ginger ale for its sparkling complexity. I've been experimenting with the ratios; reducing the orange juice and iced tea while introducing ginger ale at 30-35 ml. I'm focusing on the overall serving size, now. I think I have a final recipe in mind.\n\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "EswVCskVAWkUfRMY3D9I/UjjAFLsOta4K2IsPAfNRv+3sP2fJBQjlg0pb778V6k/mOeCDA8L6TiU2e0X8W6IUA0meNNLPGrcmbPUUSaG4jGVRRGH9vGLv9azjXX+QUGD3OhMudvUfjQ5/Aq+PXgKnMTwjAotZGE/e/mFKYoucLi3l+7QUgooi6QoyZxWCX+E6Iz7wFQjJTwSYGtHql4mgwvLkV+42nHbW5J6a02XIDsfx2eA+0Q6LpRP7sZcLOaGaWihxoOsN6uEGzN5iBEFQFiZ0cejJo6GdeXkKo7iAx3jlD0F4xEPuNFouh8UxPyemFXFF+Kg+4ej952nB17PEqXaMgKSHAUMj2JDfEO86H11rmuxBHDaWEWfi0AAuix/2qZBIVVmXD79U5tmuLVljnLzji0UGXH/LV2Lp3hq/m0PpKdo8JUUsNr26zYbmzL2k8Vk2PDnHQA6YV2Jau0sps1gv7tVgnAf58CBwMGQrZA0dHBYmL1X8awwVlGd8GWbOCQE8xmwM2lisaQ4nPn8oAE7ZWviaxRSN6oNz3uXd6sogjchUc8+P7CXgj83bL5ODJdYa6lFrQj1H0CRs1glVd4uWqwc6A+itAY0Xu+gJUJSjat4Hzi117tdM2mNBy+ShZtDXeUOIGGoemakcs7quGJXiAA3judXZO96OBhFu+6I+gwm/j2Gr9U4/2Gtt3fh5aWorx80wQy/ZZcs5kMjvHZZPpoZ1Y7JOdTn2/DJj0HVIynvrelGCYHXcASLzRN7R7/WLcbc8W0Y55qV6sHLpfbIdyImldJ+bnAPyydSCe9h4ugNbqEgQk1aaKJbDkzTbIxC1NlKpI6MjdcNRMCjcgC2e2PG/M72gpgcXJVjgBzBOgl+UN+ZIlSmmp+/wRGPVZVnkcbt4sPFFL+at2seNkhSuQNeXgVilHDUEpfKfqgu4VoIQZmCaQPyuVdjdBWwqFg/n86FvoOO8Iz/7dbBTb1VszIceo+K6NX6RiG8FGULh78jn/wPGbRM5f6OhTpr4VKTfVM9JbYRVSyonElDQaigGW4rK0qWeJGTn+eiOs7o2o0pqTfI4fak00NIPywdEKhm6ZSf0+MG1lq626+3CKk5v5h64EO6KVcLEqplLYm4WcfZvKUnPGGD+/iWdNnOuOn7UG5C5oMG1LF/idBxLFNeqTNr+iHNr0SWeyK6B5WcBNJcKtRwqxW0/0SroJYSFwyRlWFIpF1nQTWRFZtr5SaXeLJgfYZc/ubfnnYFrwq5PQ6fF4tzTgiplRFVak3O/5ZAjRS7RgRynY0iLrrYY/hwEVjLa4/X8vII3X19kOvPzx/0FU/rN4Raf55IDPFF9Qs3eZgHfnyWgicjdTaoTthl9jIEO+VE6nPM2bPnDGIouVbPKHoQfZp4H0lMP86TjHfuIIyQpft+/+FuxvRauel0Oiqh6uEA4gQPd8lv7crXovufgHHgCgLVqWonVQtew82UEXUZmEO6IvGDiCNGHN+lahldul5MEe09LjWSQtflIw4PxhRxFMRL6R3mwUjXygIMLsK6vTgE/YiOOxHBNWvostOuXywfaurAK8YZJ0c+NET6GvzgbcEUtw3LAuwWap1PtcDIW6sFYCPaNL3iVqZp/KIR9lLMwX/JUD8UpLTX/GvgbW5qBmcZhJ+9z02Nq4oOr3go9qogr3cDyTsleDknj7sw4lf3F5aMfZlFcc1zRCu3LMP47Zs5Gnwe+DmdD2lXiUsq3plX+sz0KyJGXJFP53GDpdg68kY7ah2U+hPKziANROxpv1NjV6h981ZQk2Xr+L1r3w13amQ8V7Xb1EFh17nWgbKV0tpBoatJ4Yxz0Vr7OnSvDRB/UI/rvoYj0a56KIAe/TZFpZttIqG7DWP1XAscjBijZG+Tub/84NkOce4MO5JephFjmCBLaoYb6xnIq3YnL5NEzS9x8TGaeh0ukEXPV5yRbgcpL0XGBMtcaplRLnYE9Vl57f1j5i1Aj5yzmaOR64z3Y8gOAF1Gron7/mgrSZfSUoEggWmUjGKIS8PeelI50krbtBIGrGrd4/9+ZBhDGluCp/TfW5Uo72ST353P0HSu/Z957M04qvxAtH7GVlOFoliqs7yoBTASKlKXNiM5+H3ChkpEPnL1yNubYMRBCZVqyO4D5xnzatzmYHqff5iuO/6/bgVmmYauoDX9uOcJgFbpY1fqJLoAUFdX8OSF2Gx6yKqe4wSkz4I7rCWD0N0ARO/b24hlCaWuk8/dCCOUvreIm3Q35Q8tPGg/3nnEHEs1Rp5o/3Cojay5j+mw24tfO43/ZoXyQEV1ptPsTmLcyHWZm8QPF4ZmJJLgGBf7Nq11s/hKkjBdJJeQfAfHrBPco+tclqt30nLEb3oPQ/RvzdubyUJs2lwVqdXh8Vw1tZT4Suuumek0bjJUZrYPgo19wKd87OGZ1a8uM6D/BEQcB8RbTC26+1RaT5zQh0OmZlZe+TjQQUdouR5mAO4td3CIZRB/NVxM+OCbDDtSPbXgaRZnAa0KtqijLn9ZJ2pYO/CFhHXiT1IWtMpnxB6aUHYWNXBQlgRjfQgECdEboIropbxR3uiBDa4Nxq7zYwWh9CaIT8vB4OTkkmve4DRhUZ0TvceJKcg1vBfS5LjRH9x+1ChwHMjyKDFiM/APbfRKq+tKkfdLNbdBntHZknAWz/Gz7Z4LVGpVI8EC896Gya9mWsMlEG+n4St+5CC/wwjYvlt/8TWfSggyqCjnjJFgXZ3nHR26HrFiVMZ6FBTA9UozQJoPQRpv3vQde2oEzq5DhkZWVOxkEk0Rng0qpj2tR/tLqPqowY2u1ZTcrOHABsaZFFg0sgKppajWIp6tUMsos6LtmSZauMRrf9A0SNroGqeXl1L0iIgD/NnfFnyrjf73tEeuYhnKvA2/Hp7gEaAFNlbUPrk8gQEkGMpDt8CkdyGomzAzOnoX88bJZpQ9ZvGTwRjfhq9dcw/y92zKw5K58t1SYceVxeW5YfxAcjFwN8Mb0H1huBKMtFShbf0Yk0p9+SD83LwJZWIZugIZ28Ibgt8yI9tmHmGV8xZ0sH6sIa9HX5fwM4b4j9Q/se3fOnpoYd9+ATojjdMQ4XXrd3z80tYZsiUaQMoC8t7ufmqEjyItwZHoFRwksPpLgUyJQJp7QXY8zMzZ0C5GUGMAxSX/llyT8it7OQ72cShKYt4js4w2UkDBCf+T/0PtAmNHZlbS/s66Qtvw5hvWhMSrPnjlBGaDjavoezC//UqbVoxX4kyL6Joa8Hf4RBuIu2Y4uN+MRiMbbSqxXVML4Vsz/Ld8HBRqeEIjIl1CWXqFYykGGLugonMcCriKMqw3jpEnx4fXZXO2ILKjTuX1mwq+Z+Wcw/YSegxjuiPTviqYBSHWb17j5Er0+GVYeuvmE/ZOYbPWhH8lNFm//cWuX9YcF8OmVgCv+AEgdtkRL40a86ZsDLriV315qEsy+BeROK6d88CFzzFrGLTbhhwrgp9AxsOTIn5B/iKYs4zZ9T5LMVgcrJI6kVYSrxtuT1ggzFkV8mYsZ5kdllaTekR3ceTJQ/SoEsBYqYcxhESPxxPp7wRQsJ/F8nGG0Nwtwz7tH9ET6LNwm3zgERRgNvdZDGGoaU3c+/rWqKk3BeCrn80/ZdP0pUWaIPnP6Vt4mY4P8xdfq00yDhc05WNn4pKF8M7K3qm9Wc5nuxF74r+StQ==",
+                  "format": "google-gemini-v1",
+                  "id": "call_142251",
+                  "index": 1
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1178,
+          "completion_tokens": 791,
+          "total_tokens": 1969,
+          "cost": 0.00384975,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 116,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00384975,
+            "upstream_inference_prompt_cost": 0.0008835,
+            "upstream_inference_completions_cost": 0.00296625
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 703,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "revise_drink",
+      "args": {
+        "expected_version": 0,
+        "explanation": "Added ginger ale for a sparkling, spicy kick to make the blend more dynamic and interesting.",
+        "changes": [
+          {
+            "ml": 40,
+            "channel": 1
+          },
+          {
+            "ml": 20,
+            "channel": 3
+          },
+          {
+            "channel": 4,
+            "ml": 30
+          },
+          {
+            "channel": 6,
+            "ml": 35
+          }
+        ],
+        "name": "Bright & Bubbly"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "recipe": {
+            "name": "Bright & Bubbly",
+            "rationale": "Added ginger ale for a sparkling, spicy kick to make the blend more dynamic and interesting.",
+            "pours": [
+              {
+                "channel": 1,
+                "ml": 40
+              },
+              {
+                "channel": 3,
+                "ml": 20
+              },
+              {
+                "channel": 4,
+                "ml": 30
+              },
+              {
+                "channel": 6,
+                "ml": 35
+              }
+            ],
+            "ml_total": 115,
+            "mood": "bright",
+            "confidence": 0.7,
+            "stir_seconds": 0
+          },
+          "version": 1,
+          "turn": 1,
+          "ledger": [],
+          "status": "active",
+          "pending_final": false,
+          "updates_left": 2
+        }
+      }
+    },
+    {
+      "kind": "model_response",
+      "latency_s": 1.266,
+      "response": {
+        "id": "gen-1789867426-eIbcCb5zs8EZYAYbnn2G",
+        "object": "chat.completion",
+        "created": 1789867426,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_952581",
+                  "function": {
+                    "name": "pour_sample",
+                    "arguments": "{\"recipe_version\":1}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "EpwBCpkBAWkUfRM4pLqSltbfpVperl5HG1lwMdDIeDLKJab4b5wO8qtKhrE4o99CWr8S/M3nlc2fSVGtY2ku/6dtbfJ3WaPZ9ZTYxZ4RT32UHn13BUxZv0rGqHcZxAPsUzI/xh0Y+cGWNu1TwQAxWevc4MNI8LV8BFYO96LgmCzEy7KL2tyLueP21vcCa/XAVIhr0Rt4DSU/42CCuETd",
+                  "format": "google-gemini-v1",
+                  "id": "call_952581",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 2114,
+          "completion_tokens": 26,
+          "total_tokens": 2140,
+          "cost": 0.001683,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 116,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.001683,
+            "upstream_inference_prompt_cost": 0.0015855,
+            "upstream_inference_completions_cost": 9.75e-05
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 10,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "pour_sample",
+      "args": {
+        "recipe_version": 1
+      },
+      "result": {
+        "ok": true,
+        "event": {
+          "kind": "sample",
+          "version": 1,
+          "turn": 1,
+          "sample_total_ml": 15,
+          "simulation_only": true,
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 4.8
+            },
+            {
+              "channel": 3,
+              "ml": 2.4
+            },
+            {
+              "channel": 4,
+              "ml": 3.6
+            },
+            {
+              "channel": 6,
+              "ml": 4.2
+            }
+          ]
+        },
+        "wait_for_user": true
+      }
+    },
+    {
+      "kind": "operator",
+      "command": "/pour",
+      "result": {
+        "ok": true,
+        "state": {
+          "recipe": {
+            "name": "Bright & Bubbly",
+            "rationale": "Added ginger ale for a sparkling, spicy kick to make the blend more dynamic and interesting.",
+            "pours": [
+              {
+                "channel": 1,
+                "ml": 40
+              },
+              {
+                "channel": 3,
+                "ml": 20
+              },
+              {
+                "channel": 4,
+                "ml": 30
+              },
+              {
+                "channel": 6,
+                "ml": 35
+              }
+            ],
+            "ml_total": 115,
+            "mood": "bright",
+            "confidence": 0.7,
+            "stir_seconds": 0
+          },
+          "version": 1,
+          "turn": 1,
+          "ledger": [
+            {
+              "kind": "sample",
+              "version": 1,
+              "turn": 1,
+              "sample_total_ml": 15,
+              "simulation_only": true,
+              "pours": [
+                {
+                  "channel": 1,
+                  "ml": 4.8
+                },
+                {
+                  "channel": 3,
+                  "ml": 2.4
+                },
+                {
+                  "channel": 4,
+                  "ml": 3.6
+                },
+                {
+                  "channel": 6,
+                  "ml": 4.2
+                }
+              ]
+            },
+            {
+              "kind": "final",
+              "version": 1,
+              "simulation_only": true,
+              "recipe": {
+                "name": "Bright & Bubbly",
+                "rationale": "Added ginger ale for a sparkling, spicy kick to make the blend more dynamic and interesting.",
+                "pours": [
+                  {
+                    "channel": 1,
+                    "ml": 40
+                  },
+                  {
+                    "channel": 3,
+                    "ml": 20
+                  },
+                  {
+                    "channel": 4,
+                    "ml": 30
+                  },
+                  {
+                    "channel": 6,
+                    "ml": 35
+                  }
+                ],
+                "ml_total": 115,
+                "mood": "bright",
+                "confidence": 0.7,
+                "stir_seconds": 0
+              }
+            }
+          ],
+          "status": "served",
+          "pending_final": false,
+          "updates_left": 2
+        }
+      }
+    }
+  ],
+  "state": {
+    "recipe": {
+      "name": "Bright & Bubbly",
+      "rationale": "Added ginger ale for a sparkling, spicy kick to make the blend more dynamic and interesting.",
+      "pours": [
+        {
+          "channel": 1,
+          "ml": 40
+        },
+        {
+          "channel": 3,
+          "ml": 20
+        },
+        {
+          "channel": 4,
+          "ml": 30
+        },
+        {
+          "channel": 6,
+          "ml": 35
+        }
+      ],
+      "ml_total": 115,
+      "mood": "bright",
+      "confidence": 0.7,
+      "stir_seconds": 0
+    },
+    "version": 1,
+    "turn": 1,
+    "ledger": [
+      {
+        "kind": "sample",
+        "version": 1,
+        "turn": 1,
+        "sample_total_ml": 15,
+        "simulation_only": true,
+        "pours": [
+          {
+            "channel": 1,
+            "ml": 4.8
+          },
+          {
+            "channel": 3,
+            "ml": 2.4
+          },
+          {
+            "channel": 4,
+            "ml": 3.6
+          },
+          {
+            "channel": 6,
+            "ml": 4.2
+          }
+        ]
+      },
+      {
+        "kind": "final",
+        "version": 1,
+        "simulation_only": true,
+        "recipe": {
+          "name": "Bright & Bubbly",
+          "rationale": "Added ginger ale for a sparkling, spicy kick to make the blend more dynamic and interesting.",
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 40
+            },
+            {
+              "channel": 3,
+              "ml": 20
+            },
+            {
+              "channel": 4,
+              "ml": 30
+            },
+            {
+              "channel": 6,
+              "ml": 35
+            }
+          ],
+          "ml_total": 115,
+          "mood": "bright",
+          "confidence": 0.7,
+          "stir_seconds": 0
+        }
+      }
+    ],
+    "status": "served",
+    "pending_final": false,
+    "updates_left": 2
+  }
+}

@@ -1,0 +1,1492 @@
+{
+  "model": "google/gemini-3.8-flash",
+  "mode": "combined",
+  "events": [
+    {
+      "kind": "input",
+      "file": "flat.m4a",
+      "evidence": {
+        "features": {
+          "pitch_mean_hz": 118.6,
+          "pitch_sd_hz": 27.1,
+          "loudness_db": -38.7,
+          "pause_ratio": 0.42,
+          "onset_rate_hz": 2.0,
+          "jitter_pct": 8.07,
+          "shimmer_pct": 14.86,
+          "duration_s": 11.99
+        },
+        "axes": [
+          0.46875,
+          1.0,
+          1.0
+        ],
+        "weak_acoustic_evidence": false,
+        "decipher_proposal": {
+          "name": "The Upswing",
+          "rationale": "You spoke softly and you left a lot of space between your words, so this is bright and sharp, to keep that going.",
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 60
+            },
+            {
+              "channel": 3,
+              "ml": 20
+            },
+            {
+              "channel": 4,
+              "ml": 35
+            }
+          ],
+          "ml_total": 115,
+          "mood": "bright",
+          "confidence": 0.7
+        }
+      }
+    },
+    {
+      "kind": "model_response",
+      "latency_s": 3.266,
+      "response": {
+        "id": "gen-1789876932-OACjgryjcmBtQxTHbt9q",
+        "object": "chat.completion",
+        "created": 1789876932,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": "**Crafting a Break**\n\nI'm focusing on \"The Upswing\" as a title, aiming to capture the reflective tone. I'm considering what kind of \"something\" would offer the user a needed break after a long day. The goal is to provide a refreshing uplift in this moment of quiet.\n\n\n",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_171688",
+                  "function": {
+                    "name": "revise_drink",
+                    "arguments": "{\"expected_version\":0,\"set_amounts\":[{\"channel\":1,\"ml\":60},{\"ml\":20,\"channel\":3},{\"channel\":4,\"ml\":35}],\"name\":\"The Upswing\",\"explanation\":\"A crisp blend of citrus and iced tea to help you unwind after a long day.\"}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Crafting a Break**\n\nI'm focusing on \"The Upswing\" as a title, aiming to capture the reflective tone. I'm considering what kind of \"something\" would offer the user a needed break after a long day. The goal is to provide a refreshing uplift in this moment of quiet.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "ErgOCrUOAWkUfRMH9gJAePCQXuI685y2XPoXJewUl8nhvooL9MX98KQkb2eYQysfnixdQSXUo1FGtDESLpIjY/msUdpwWjYHrfjw5xOLfCgc6OhD3qlMQx8YK2VXqK67DZ1MrugOBeqzXWjh2H9FphuhMv7uT+klQwiWDuvptGFulkzbUCQQFAgcBz5RukfO3ER/uLIoJQhhTcNSe5dpcKWYPp3WpyoDmPIsUWef67PMzBHa8U0q9kIeSoCiRXohrINRLuZ6N3ebipR2DfNh0Z03oI37BaX4Wv/Y6o9VrBE/24WNMbR1Fxc43zyIz6A6aN23qme7w0u4QjtLIE76SqZ9CHl/D9Mcaic4RNHIijnr0l6DDWYnYIxv6SZ9jijfEpt6/2vHJjaPveu5MZa6ziki+wH2+nZz+mBzwRsTFWbi4EUYrtSiYHV1I4cOjobJkYViA0BHDiu7arjCLbLXl/XkjqO97/6J1CPXnqk8xBmNsUdC/4Mx5qQISUhnWtpXXlCqhgqPX1BQIHTzF2WIcVjqRUFA/cINwJ40mOQdYDOBaHQJTfNGby09DAWoaQahikzbb2VFtEgw9/z4v/m+IdpZ3t6/dU7TyDbMGTeAtXhe1Wg8r1VE9Ls1XLpB6Zys9ZzIHndbYlK8Qmm5tPlW7PlRBP2IGC30nM+EnyFI3NSS5enV0cP+aBp2y+VflTwnBtnElzBXqxq4M7idXChvl9L8Ax/Ttmm5+P1FUGKAJIS/XJcLbubRPaTkaMzDTVV1GNgw6PI6cJZr7PzZGQC/FDBPDiU7Z1a1AiaPxDpIxls4q9wgtlCyhK8Os54Dwa94f3UUl9qYuMZhtUXNekK7Cit3KYilkPRxaozitASN+kxtjPHgGEoTZt3tf+XujUWQ234SXB1GVd6LdIxLSUouZAWQDRf3DlE4VNaHrVBZRrIgxlDibNrXSqNhkksfjYVsP/epJJ59owXHAhSUuk87I49c6CL4R7ZUJ5d+qrS7W8JmCK9Y2MRtluEfy4Pbedu9uqT/eetayYsWkl5oIi71JODNHJD9W7c7s545lD0adi1gwWIySG1ZQDLrQcnNwCuJ0vPc35zCABxpK+iGrmjtb+6tsjn7OHfizbVKX5/1rEJeERZXxg7AwLtDviKNqGUVe/avDVExT88gJ2wxEdo7/JJ2ygcdxGLzhsTBYwtVyexUuhtDy20Lk7FVGwxQOqh0GbksLqvcvxxEUXvuRYgkydJOHDZNUfENBeyBKDzH4gaHmQ0PGCS3lz766PLyOjW9fw5h1KP96ahEfVpfLvvF6gNTs9k7c308VDym/ibsRaQ2OZ7uzDYzIwROBJHxOcxeDyRUcyjvKP7Uwi9jaTuSHHMEFlUS2WSS54YmE8YLHQ5KrDSibdySNez/+DCkcDj66mIjBMcCY57uPP2FVydiXseXzAI3wY0hQflQCQjcAyh5Ph+IZkqiZxuQ3SMEf8wrCDDAABkjH7Q+FgHFwX7HLup3nd5feQ/guWKWCnuvX4IJLhnRfR8jclY4XzOwsFc3jc20d99IsuvwbeQPF1d0Ja0V4ZzGle/CStLJDLNxx4BIXxV1QYsO3iBafq6UiEyngMZVoOYGpyi2v/nKLklWINsWx+VLjqPRZx3wScEXp9SQ1OJl02uoiVzcRuffoptv/ng4UlVViXHmG0ezAuRkEYqIyn4EwMFJVjAjt8wdwZalaUAsfA3WmMLCIIYYjbFWU0cJhhw2/ujAdcQePMT+Gn62OKZH9jbjMMBmSuwJNZ+wgb9m9OJLeegGuVNJ4QBEvnousEaJVWlJKE8KlFRfVk2ZKwS1jfxA3s04ZeQGSNCfyJr4zAieYStbFpXuQjtc/s+sCNSU0D5fBxt3WEMeyIX3ChTE9kc7SSKJnHId+kErLmZ5fahv1ifg40MFu9J0/KJAyCS75VMWqwRPMh5L6VaehjaiDFDD50ZCCbz+llvG6HqULI2oddQtcSyoREMqD0YsBB+uA8LpfCNCGBi6osRZOEUV3R+gGeEPsUMrw/9TAi6g0RQnJO5P+jRxt/WJQdXlArGMtWCmFpplTVtDTtLJZHu+6Ha+Qc664BEDvOTWKAISZY0nq90cV7WmOvN0dm3KI2qOLTll077m9jqfNQJqbLBr5bJTt+uNa6339CjcfzVeczJ+TkUFAA7oxdLIv42JrYTmFJlUtH10tR21AQErXHgXhf5U5FM2zZRh4hLYxZDwDpw+DJz+VK9EJshucrj6x+QzyFtuBzt/NcT9QkE9FvVeicaOfcbM+I7JQ2DYUXMEJWDoJysU+4i58uNPbNxx7olRnYGXAYQzhvPFuhnOIqSyw5bhhRGOfCv1Gh92BLBrwdY14PocQvbTlXDpCq4LstoFwYG3rssw5vt2BFJldo2q1zuxZFwhakqdaVmwHyg2tnZXJwHK3WCBTU5hHRu68yh/RqwbngBcu+Dm9hj+/lBvAYwp2647",
+                  "format": "google-gemini-v1",
+                  "id": "call_171688",
+                  "index": 1
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1877,
+          "completion_tokens": 516,
+          "total_tokens": 2393,
+          "cost": 0.00334275,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 330,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00334275,
+            "upstream_inference_prompt_cost": 0.00140775,
+            "upstream_inference_completions_cost": 0.001935
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 438,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "revise_drink",
+      "args": {
+        "expected_version": 0,
+        "set_amounts": [
+          {
+            "channel": 1,
+            "ml": 60
+          },
+          {
+            "ml": 20,
+            "channel": 3
+          },
+          {
+            "channel": 4,
+            "ml": 35
+          }
+        ],
+        "name": "The Upswing",
+        "explanation": "A crisp blend of citrus and iced tea to help you unwind after a long day."
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "recipe": {
+            "name": "The Upswing",
+            "rationale": "A crisp blend of citrus and iced tea to help you unwind after a long day.",
+            "pours": [
+              {
+                "channel": 1,
+                "ml": 60
+              },
+              {
+                "channel": 3,
+                "ml": 20
+              },
+              {
+                "channel": 4,
+                "ml": 35
+              }
+            ],
+            "ml_total": 115,
+            "mood": "bright",
+            "confidence": 0.7,
+            "stir_seconds": 0
+          },
+          "version": 1,
+          "turn": 1,
+          "ledger": [],
+          "status": "active",
+          "pending_final": false,
+          "updates_left": 2
+        },
+        "amount_diff": [],
+        "diff_base": "internal_baseline",
+        "previous_version": 0
+      }
+    },
+    {
+      "kind": "model_response",
+      "latency_s": 1.484,
+      "response": {
+        "id": "gen-1789876935-9EIF8ge9uK2fgfQHRezW",
+        "object": "chat.completion",
+        "created": 1789876935,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_976167",
+                  "function": {
+                    "name": "pour_sample",
+                    "arguments": "{\"recipe_version\":1}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "Ep4BCpsBAWkUfRMLzogyiSqHWjAYIaFJY+aAMzyNiPtxtuhcJderfB2lbSu8WkS4xLB52NUudGPWrlvGWwgBlH+YBLYUYftEI33OgVU/LC6FIZ0QFGQzYYKwPWDbMvwMIXsW5Q3keFWM6kaLU/DBdI9z5iUUMluVVgr/IeCMaN7Z6lvgvIJjTt9QfECR9PaA5hj+ZHVOsqxdEGeFiyBOa3M=",
+                  "format": "google-gemini-v1",
+                  "id": "call_976167",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 2547,
+          "completion_tokens": 28,
+          "total_tokens": 2575,
+          "cost": 0.00201525,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 330,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00201525,
+            "upstream_inference_prompt_cost": 0.00191025,
+            "upstream_inference_completions_cost": 0.000105
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 12,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "pour_sample",
+      "args": {
+        "recipe_version": 1
+      },
+      "result": {
+        "ok": true,
+        "event": {
+          "kind": "sample",
+          "version": 1,
+          "turn": 1,
+          "sample_total_ml": 15,
+          "simulation_only": true,
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 7.826
+            },
+            {
+              "channel": 3,
+              "ml": 2.609
+            },
+            {
+              "channel": 4,
+              "ml": 4.565
+            }
+          ]
+        },
+        "wait_for_user": true
+      }
+    },
+    {
+      "kind": "model_response",
+      "phase": "sample_followup",
+      "latency_s": 2.016,
+      "response": {
+        "id": "gen-1789876936-dDEyeEAkmwDy6ia6ZS4K",
+        "object": "chat.completion",
+        "created": 1789876936,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "stop",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": "Your drink blends iced tea with sweet orange and a touch of tart grapefruit for a refreshing break. Does that sound like the right balance for you?",
+              "refusal": null,
+              "reasoning": "**Analyzing Beverage Possibilities**\n\nI've been exploring different beverage combinations and considering how they might be perceived. I'm focusing on potential sensory experiences and how ingredients interact with each other. The next step is evaluating the feasibility of the chosen approach.\n\n\n",
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Analyzing Beverage Possibilities**\n\nI've been exploring different beverage combinations and considering how they might be perceived. I'm focusing on potential sensory experiences and how ingredients interact with each other. The next step is evaluating the feasibility of the chosen approach.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 2862,
+          "completion_tokens": 332,
+          "total_tokens": 3194,
+          "cost": 0.0033915,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 330,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0033915,
+            "upstream_inference_prompt_cost": 0.0021465,
+            "upstream_inference_completions_cost": 0.001245
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 303,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "input",
+      "file": "tart.m4a",
+      "evidence": {
+        "features": {
+          "pitch_mean_hz": 122.7,
+          "pitch_sd_hz": 26.7,
+          "loudness_db": -34.6,
+          "pause_ratio": 0.224,
+          "onset_rate_hz": 4.2,
+          "jitter_pct": 5.56,
+          "shimmer_pct": 8.78,
+          "duration_s": 5.0
+        },
+        "axes": [
+          0.5,
+          1.0,
+          1.0
+        ],
+        "weak_acoustic_evidence": false,
+        "decipher_proposal": {
+          "name": "Bright Monday",
+          "rationale": "You spoke softly and you talked quickly, so this is bright and sharp, to keep that going.",
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 55
+            },
+            {
+              "channel": 3,
+              "ml": 20
+            },
+            {
+              "channel": 4,
+              "ml": 40
+            }
+          ],
+          "ml_total": 115,
+          "mood": "bright",
+          "confidence": 0.7
+        }
+      }
+    },
+    {
+      "kind": "model_response",
+      "latency_s": 3.781,
+      "response": {
+        "id": "gen-1789876946-LBotcNe0KH2q0kUjZCmJ",
+        "object": "chat.completion",
+        "created": 1789876946,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": "**Adjusting the Recipe**\n\nOkay, I'm now modifying the current recipe. It looks like the goal is to reduce the sweetness and increase the tartness, all while maintaining the original 115 ml serving size. I am updating my existing recipe accordingly.\n\n\n",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_1539866",
+                  "function": {
+                    "name": "revise_drink",
+                    "arguments": "{\"explanation\":\"Dialed down the sweet orange juice and brought up the tart grapefruit.\",\"expected_version\":1,\"name\":\"The Upswing\",\"set_amounts\":[{\"channel\":1,\"ml\":45},{\"channel\":3,\"ml\":35},{\"ml\":35,\"channel\":4}]}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Adjusting the Recipe**\n\nOkay, I'm now modifying the current recipe. It looks like the goal is to reduce the sweetness and increase the tartness, all while maintaining the original 115 ml serving size. I am updating my existing recipe accordingly.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "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",
+                  "format": "google-gemini-v1",
+                  "id": "call_1539866",
+                  "index": 1
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 3452,
+          "completion_tokens": 700,
+          "total_tokens": 4152,
+          "cost": 0.005214,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 492,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.005214,
+            "upstream_inference_prompt_cost": 0.002589,
+            "upstream_inference_completions_cost": 0.002625
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 625,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "revise_drink",
+      "args": {
+        "explanation": "Dialed down the sweet orange juice and brought up the tart grapefruit.",
+        "expected_version": 1,
+        "name": "The Upswing",
+        "set_amounts": [
+          {
+            "channel": 1,
+            "ml": 45
+          },
+          {
+            "channel": 3,
+            "ml": 35
+          },
+          {
+            "ml": 35,
+            "channel": 4
+          }
+        ]
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "recipe": {
+            "name": "The Upswing",
+            "rationale": "Dialed down the sweet orange juice and brought up the tart grapefruit.",
+            "pours": [
+              {
+                "channel": 1,
+                "ml": 45
+              },
+              {
+                "channel": 3,
+                "ml": 35
+              },
+              {
+                "channel": 4,
+                "ml": 35
+              }
+            ],
+            "ml_total": 115,
+            "mood": "bright",
+            "confidence": 0.7,
+            "stir_seconds": 0
+          },
+          "version": 2,
+          "turn": 2,
+          "ledger": [
+            {
+              "kind": "sample",
+              "version": 1,
+              "turn": 1,
+              "sample_total_ml": 15,
+              "simulation_only": true,
+              "pours": [
+                {
+                  "channel": 1,
+                  "ml": 7.826
+                },
+                {
+                  "channel": 3,
+                  "ml": 2.609
+                },
+                {
+                  "channel": 4,
+                  "ml": 4.565
+                }
+              ]
+            }
+          ],
+          "status": "active",
+          "pending_final": false,
+          "updates_left": 1
+        },
+        "amount_diff": [
+          {
+            "channel": 1,
+            "ingredient": "Orange juice",
+            "before_ml": 60,
+            "after_ml": 45,
+            "delta_ml": -15
+          },
+          {
+            "channel": 3,
+            "ingredient": "Grapefruit",
+            "before_ml": 20,
+            "after_ml": 35,
+            "delta_ml": 15
+          }
+        ],
+        "diff_base": "previous_sampled_recipe",
+        "previous_version": 1
+      }
+    },
+    {
+      "kind": "model_response",
+      "latency_s": 2.062,
+      "response": {
+        "id": "gen-1789876949-0ZBAiWS1xlCSb42gqJYe",
+        "object": "chat.completion",
+        "created": 1789876949,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_1081650",
+                  "function": {
+                    "name": "pour_sample",
+                    "arguments": "{\"recipe_version\":2}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "Ep4BCpsBAWkUfROw5g6rM4O8bPHQJR4v2686HdI7R+1m9gupEJHg1EEcktsVpGTCQ2QEt/pHlmob9xQcajyGegtUYkFfndPa/NVJqnPm4wLJwLmskq4F5GsCPIaBeYNqfrYc3eTJVqID9DVZAWJjcQzVxWy9A4kI/D2Es2aIcSYg+dHFMHQ9th33WVvJLwjLC9dCHJejtQ2cz8K/EQ+SAMA=",
+                  "format": "google-gemini-v1",
+                  "id": "call_1081650",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 4439,
+          "completion_tokens": 28,
+          "total_tokens": 4467,
+          "cost": 0.00343425,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 492,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00343425,
+            "upstream_inference_prompt_cost": 0.00332925,
+            "upstream_inference_completions_cost": 0.000105
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 12,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "pour_sample",
+      "args": {
+        "recipe_version": 2
+      },
+      "result": {
+        "ok": true,
+        "event": {
+          "kind": "sample",
+          "version": 2,
+          "turn": 2,
+          "sample_total_ml": 15,
+          "simulation_only": true,
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 5.87
+            },
+            {
+              "channel": 3,
+              "ml": 4.565
+            },
+            {
+              "channel": 4,
+              "ml": 4.565
+            }
+          ]
+        },
+        "wait_for_user": true
+      }
+    },
+    {
+      "kind": "model_response",
+      "phase": "sample_followup",
+      "latency_s": 2.422,
+      "response": {
+        "id": "gen-1789876952-7dNYmPVMGpF6ggxuZe2E",
+        "object": "chat.completion",
+        "created": 1789876952,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "stop",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": "I cut back on the sweet orange juice and added more grapefruit for a crisper, more tart finish. Is this level of tartness closer to what you had in mind?",
+              "refusal": null,
+              "reasoning": null,
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "signature": "Eu4GCusGAWkUfROItQzm5P/6UDWn/sy2H8+5q3n4SDCivCHg5CIU1jSu63rWHUbCTXTmwxS4kkimuKL0ss91lI4RlHKZgEfP1Kpcc+l6RVLMAreTDicUwsQuk+vyY0ykMG7aIixczJHL4h03SENcPvioOQ3Y0szDW4ZZzrJvp9FfZ1c21oorCGrRwQhvyMmkR3mv6tHFOY4rhjDDLP5xLhvaE5CC+ox2zTdc2czoKe9wgqcbaW9qiQhf/y5CSQyzi0XBqL5LnLrrY1socBsl07Q5Ju5HqRX4G/rHK2KxiQLQjBHQQFRfNftSMlnD9Ddx6fe8HwByGrcVffwKLMz2weRS6u25TgGu8RkboD1ed+cEPsW9bsKF5BurYtNkVvnPCr7WX5dZH4wYCR1iUz33wWhCF4Vlrhvbv/uMhGl8Ig997HHyBbFHSGmjNJhk4sZCuqmqdHLlqB8X+wmbAYmoIKQ7Jy0SZOH10ONgdowa1YLtnrFoG+9g4j3BvPXzi3xPkZdnLGgtoip8S0NSUsi3OMdXXB5DUVG4J6/qoZXod5FUevf31AeJp80/83Y+Kwa2VzPbqr3yXGjvj83fFJgQzORzro/7qubWvlVIKBvK4isvkrhuoZlhUfvLCUlrv7qzxbg5sMkKAwYFuq+LfYJKsULXVUIX3Bd4EZgHbOhqujb+GJG6wxPgDyzph9fuVXVMc5+m/BkHg9MOkQjESsRveiVZLaAQRaUX0LQUfGbrnKfZT/bHqpam0jKjpaeBIbjwUheW/jYLTErS9HWSTmREIaPtHEhANNd+0dlIphcJJ4X8QFzbL7w+JrN3nFzpNkG21qbfbyLdYWc2lmvHbQiX+HDr8CMe1zgxd+TTrknBM3z9E/wDu5iCTlEi3JSh0QvoMzXKXpqdtWJVXr9uWq7MVxdsY1jImDHUiDjUooABMpyl1KdUu3IWXoiMBb3LXvQP91FKzl5y+5G+/+f6XrMleWFjNG1q8WiXmowl8Al5sls8Zy7+PF8tS6gcjlACzETP+cN3jvqO44BpXA64KiX4CwQ8Ak48N1U292rBrULX9CjAChDGartBW1tWTdqnlvJYlJV40SL4HBG3nPve/d2QTwhW0aIeGVvWfOd2w2UbAGtQIu7ZJ8iERSMMT5KjK9iSZ3I8qnIWneDkIoBK+uY7MT8=",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 4753,
+          "completion_tokens": 188,
+          "total_tokens": 4941,
+          "cost": 0.00426975,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 492,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00426975,
+            "upstream_inference_prompt_cost": 0.00356475,
+            "upstream_inference_completions_cost": 0.000705
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 153,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "input",
+      "file": "gentle.m4a",
+      "evidence": {
+        "features": {
+          "pitch_mean_hz": 125.2,
+          "pitch_sd_hz": 29.7,
+          "loudness_db": -37.6,
+          "pause_ratio": 0.196,
+          "onset_rate_hz": 3.64,
+          "jitter_pct": 3.07,
+          "shimmer_pct": 7.39,
+          "duration_s": 5.77
+        },
+        "axes": [
+          0.5,
+          1.0,
+          1.0
+        ],
+        "weak_acoustic_evidence": false,
+        "decipher_proposal": {
+          "name": "Bright Monday",
+          "rationale": "You spoke softly and you talked quickly, so this is bright and sharp, to keep that going.",
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 55
+            },
+            {
+              "channel": 3,
+              "ml": 20
+            },
+            {
+              "channel": 4,
+              "ml": 40
+            }
+          ],
+          "ml_total": 115,
+          "mood": "bright",
+          "confidence": 0.7
+        }
+      }
+    },
+    {
+      "kind": "model_response",
+      "latency_s": 4.219,
+      "response": {
+        "id": "gen-1789876956-UldV4JliabU3zlA8zsKl",
+        "object": "chat.completion",
+        "created": 1789876956,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": "**Refining the Balance**\n\nOkay, I've taken the feedback into account. I'm focusing on softening the profile, dialing back the sharpness, but avoiding excessive sweetness. The grapefruit component was at 35ml, and that will be adjusted down to achieve that goal.\n\n\n**Adjusting for Smoothness**\n\nI'm now zeroing in on a smoother profile. Considering feedback, I'm leaning toward iced tea to mellow things out without adding excessive sweetness. Reducing the grapefruit slightly, and bumping the iced tea up to 50ml. Orange juice can remain moderate, around 40ml. The total volume remains at 115 ml. I'm aiming for a gentler overall experience, as that seems to be the critical element.\n\n\n",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_974999",
+                  "function": {
+                    "name": "revise_drink",
+                    "arguments": "{\"explanation\":\"Softened the sharp grapefruit and leaned more into smooth iced tea to keep it gentle without adding heavy sweetness.\",\"expected_version\":2,\"set_amounts\":[{\"channel\":1,\"ml\":45},{\"ml\":25,\"channel\":3},{\"channel\":4,\"ml\":45}],\"name\":\"The Upswing\"}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Refining the Balance**\n\nOkay, I've taken the feedback into account. I'm focusing on softening the profile, dialing back the sharpness, but avoiding excessive sweetness. The grapefruit component was at 35ml, and that will be adjusted down to achieve that goal.\n\n\n**Adjusting for Smoothness**\n\nI'm now zeroing in on a smoother profile. Considering feedback, I'm leaning toward iced tea to mellow things out without adding excessive sweetness. Reducing the grapefruit slightly, and bumping the iced tea up to 50ml. Orange juice can remain moderate, around 40ml. The total volume remains at 115 ml. I'm aiming for a gentler overall experience, as that seems to be the critical element.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "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",
+                  "format": "google-gemini-v1",
+                  "id": "call_974999",
+                  "index": 1
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 5511,
+          "completion_tokens": 824,
+          "total_tokens": 6335,
+          "cost": 0.00722325,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 730,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00722325,
+            "upstream_inference_prompt_cost": 0.00413325,
+            "upstream_inference_completions_cost": 0.00309
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 742,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "revise_drink",
+      "args": {
+        "explanation": "Softened the sharp grapefruit and leaned more into smooth iced tea to keep it gentle without adding heavy sweetness.",
+        "expected_version": 2,
+        "set_amounts": [
+          {
+            "channel": 1,
+            "ml": 45
+          },
+          {
+            "ml": 25,
+            "channel": 3
+          },
+          {
+            "channel": 4,
+            "ml": 45
+          }
+        ],
+        "name": "The Upswing"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "recipe": {
+            "name": "The Upswing",
+            "rationale": "Softened the sharp grapefruit and leaned more into smooth iced tea to keep it gentle without adding heavy sweetness.",
+            "pours": [
+              {
+                "channel": 1,
+                "ml": 45
+              },
+              {
+                "channel": 3,
+                "ml": 25
+              },
+              {
+                "channel": 4,
+                "ml": 45
+              }
+            ],
+            "ml_total": 115,
+            "mood": "bright",
+            "confidence": 0.7,
+            "stir_seconds": 0
+          },
+          "version": 3,
+          "turn": 3,
+          "ledger": [
+            {
+              "kind": "sample",
+              "version": 1,
+              "turn": 1,
+              "sample_total_ml": 15,
+              "simulation_only": true,
+              "pours": [
+                {
+                  "channel": 1,
+                  "ml": 7.826
+                },
+                {
+                  "channel": 3,
+                  "ml": 2.609
+                },
+                {
+                  "channel": 4,
+                  "ml": 4.565
+                }
+              ]
+            },
+            {
+              "kind": "sample",
+              "version": 2,
+              "turn": 2,
+              "sample_total_ml": 15,
+              "simulation_only": true,
+              "pours": [
+                {
+                  "channel": 1,
+                  "ml": 5.87
+                },
+                {
+                  "channel": 3,
+                  "ml": 4.565
+                },
+                {
+                  "channel": 4,
+                  "ml": 4.565
+                }
+              ]
+            }
+          ],
+          "status": "active",
+          "pending_final": false,
+          "updates_left": 0
+        },
+        "amount_diff": [
+          {
+            "channel": 3,
+            "ingredient": "Grapefruit",
+            "before_ml": 35,
+            "after_ml": 25,
+            "delta_ml": -10
+          },
+          {
+            "channel": 4,
+            "ingredient": "Iced tea",
+            "before_ml": 35,
+            "after_ml": 45,
+            "delta_ml": 10
+          }
+        ],
+        "diff_base": "previous_sampled_recipe",
+        "previous_version": 2
+      }
+    },
+    {
+      "kind": "model_response",
+      "latency_s": 2.438,
+      "response": {
+        "id": "gen-1789876961-B3FtSNeiC1i7N7BLhsDW",
+        "object": "chat.completion",
+        "created": 1789876961,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_390378",
+                  "function": {
+                    "name": "pour_sample",
+                    "arguments": "{\"recipe_version\":3}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "EpcBCpQBAWkUfRPnTL4GKn1NWIdyGYOvqS8Yo9DDD+N52+xgrl1RdcPEDg7ORX1VunioV/4aF42cfGgqJ+vyHVBtkMVQrc+t+j5yjMc3MmsDE4rreBRedQYEvRkTjvD4HnSYDUds1bn6qRwezCNK378Pr7idDKMSzEKddZQWAMtnh8Q72BfQhn+N3MuvVJVxEboW/GPhkZVaJw==",
+                  "format": "google-gemini-v1",
+                  "id": "call_390378",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 6698,
+          "completion_tokens": 24,
+          "total_tokens": 6722,
+          "cost": 0.0051135,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 730,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0051135,
+            "upstream_inference_prompt_cost": 0.0050235,
+            "upstream_inference_completions_cost": 9e-05
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 8,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "pour_sample",
+      "args": {
+        "recipe_version": 3
+      },
+      "result": {
+        "ok": true,
+        "event": {
+          "kind": "sample",
+          "version": 3,
+          "turn": 3,
+          "sample_total_ml": 15,
+          "simulation_only": true,
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 5.87
+            },
+            {
+              "channel": 3,
+              "ml": 3.261
+            },
+            {
+              "channel": 4,
+              "ml": 5.87
+            }
+          ]
+        },
+        "wait_for_user": true
+      }
+    },
+    {
+      "kind": "model_response",
+      "phase": "sample_followup",
+      "latency_s": 2.718,
+      "response": {
+        "id": "gen-1789876963-SLsAyFKR1CHcH1t9TzLV",
+        "object": "chat.completion",
+        "created": 1789876963,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "stop",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": "I lowered the grapefruit to ease the sharpness and brought up the iced tea for a gentler, balanced finish. Would you like me to pour a full glass of this, or cancel?",
+              "refusal": null,
+              "reasoning": "**Finalizing Thought Instructions**\n\nI've reached the end of my updates! I've successfully processed the provided instructions about how to offer and finalize revisions, and am ready for the next step. Are you ready to either finalize or cancel?\n\n\n",
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Finalizing Thought Instructions**\n\nI've reached the end of my updates! I've successfully processed the provided instructions about how to offer and finalize revisions, and am ready for the next step. Are you ready to either finalize or cancel?\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 7007,
+          "completion_tokens": 195,
+          "total_tokens": 7202,
+          "cost": 0.0059865,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 730,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0059865,
+            "upstream_inference_prompt_cost": 0.00525525,
+            "upstream_inference_completions_cost": 0.00073125
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 158,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "input",
+      "file": "accept.m4a",
+      "evidence": {
+        "features": {
+          "pitch_mean_hz": 120.3,
+          "pitch_sd_hz": 32.5,
+          "loudness_db": -34.7,
+          "pause_ratio": 0.295,
+          "onset_rate_hz": 3.83,
+          "jitter_pct": 2.74,
+          "shimmer_pct": 13.57,
+          "duration_s": 5.22
+        },
+        "axes": [
+          0.5,
+          1.0,
+          1.0
+        ],
+        "weak_acoustic_evidence": false,
+        "decipher_proposal": {
+          "name": "Bright Monday",
+          "rationale": "You spoke softly and you talked quickly, so this is bright and sharp, to keep that going.",
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 55
+            },
+            {
+              "channel": 3,
+              "ml": 20
+            },
+            {
+              "channel": 4,
+              "ml": 40
+            }
+          ],
+          "ml_total": 115,
+          "mood": "bright",
+          "confidence": 0.7
+        }
+      }
+    },
+    {
+      "kind": "model_response",
+      "latency_s": 2.766,
+      "response": {
+        "id": "gen-1789876972-Z4rC4XNyQnEgWrj8GuPk",
+        "object": "chat.completion",
+        "created": 1789876972,
+        "model": "google/gemini-3.8-flash",
+        "provider": "Google AI Studio",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "STOP",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_990763",
+                  "function": {
+                    "name": "finish_and_pour",
+                    "arguments": "{\"recipe_version\":3}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "EvICCu8CAWkUfROZTT+h6v/fZwfpyn7ms0TD48yOkYVJqxYHGAj1ouT/BVZVd589TV6FlHvMeb4hfVDey5AyOeYsoGNbA0k4jIEBN3x52vAN/JkMm/qZ4UFCuvO7Prx1LQJ7ynsML5LrU3PvS7YLc+T2J1n8BMnHK/+2AGo5UN+iul1uHdBNeCF/4V2yo4sruMC+nZ9tPQhDiqrhkjpRzdo3K97d5fMOCNMEMU2uOfBsoyaZrNqwb/sKOYKAnv6tOas9tFJ6dnpKbrRzGfDOxfzyDfqscgS07aFkS+57cC4EqQo15GjFBamtzB3EQ0fqHdP2x1luNSk/Sin1HqD69YhOJNVugvrfIHZAs4fny7WxjO3+ci/2yE2TEBfPZ/BwCR+Xwz8fN1hifgdyDpkXNY83sKEPUaFc8y977LCaRR8me1nB7WAlsw/W3krlsCv7i2tMakSAibG7OsWjRCroymH7qLbeP05sn63wEV6873x/5s6iXQ==",
+                  "format": "google-gemini-v1",
+                  "id": "call_990763",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 7804,
+          "completion_tokens": 74,
+          "total_tokens": 7878,
+          "cost": 0.0061305,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 911,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0061305,
+            "upstream_inference_prompt_cost": 0.005853,
+            "upstream_inference_completions_cost": 0.0002775
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 56,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "finish_and_pour",
+      "args": {
+        "recipe_version": 3
+      },
+      "result": {
+        "ok": true,
+        "status": "awaiting_operator_confirmation",
+        "message": "Use /pour to confirm or /cancel to discard"
+      }
+    },
+    {
+      "kind": "operator",
+      "command": "/pour",
+      "result": {
+        "ok": true,
+        "state": {
+          "recipe": {
+            "name": "The Upswing",
+            "rationale": "Softened the sharp grapefruit and leaned more into smooth iced tea to keep it gentle without adding heavy sweetness.",
+            "pours": [
+              {
+                "channel": 1,
+                "ml": 45
+              },
+              {
+                "channel": 3,
+                "ml": 25
+              },
+              {
+                "channel": 4,
+                "ml": 45
+              }
+            ],
+            "ml_total": 115,
+            "mood": "bright",
+            "confidence": 0.7,
+            "stir_seconds": 0
+          },
+          "version": 3,
+          "turn": 4,
+          "ledger": [
+            {
+              "kind": "sample",
+              "version": 1,
+              "turn": 1,
+              "sample_total_ml": 15,
+              "simulation_only": true,
+              "pours": [
+                {
+                  "channel": 1,
+                  "ml": 7.826
+                },
+                {
+                  "channel": 3,
+                  "ml": 2.609
+                },
+                {
+                  "channel": 4,
+                  "ml": 4.565
+                }
+              ]
+            },
+            {
+              "kind": "sample",
+              "version": 2,
+              "turn": 2,
+              "sample_total_ml": 15,
+              "simulation_only": true,
+              "pours": [
+                {
+                  "channel": 1,
+                  "ml": 5.87
+                },
+                {
+                  "channel": 3,
+                  "ml": 4.565
+                },
+                {
+                  "channel": 4,
+                  "ml": 4.565
+                }
+              ]
+            },
+            {
+              "kind": "sample",
+              "version": 3,
+              "turn": 3,
+              "sample_total_ml": 15,
+              "simulation_only": true,
+              "pours": [
+                {
+                  "channel": 1,
+                  "ml": 5.87
+                },
+                {
+                  "channel": 3,
+                  "ml": 3.261
+                },
+                {
+                  "channel": 4,
+                  "ml": 5.87
+                }
+              ]
+            },
+            {
+              "kind": "final",
+              "version": 3,
+              "simulation_only": true,
+              "recipe": {
+                "name": "The Upswing",
+                "rationale": "Softened the sharp grapefruit and leaned more into smooth iced tea to keep it gentle without adding heavy sweetness.",
+                "pours": [
+                  {
+                    "channel": 1,
+                    "ml": 45
+                  },
+                  {
+                    "channel": 3,
+                    "ml": 25
+                  },
+                  {
+                    "channel": 4,
+                    "ml": 45
+                  }
+                ],
+                "ml_total": 115,
+                "mood": "bright",
+                "confidence": 0.7,
+                "stir_seconds": 0
+              }
+            }
+          ],
+          "status": "served",
+          "pending_final": false,
+          "updates_left": 0
+        }
+      }
+    }
+  ],
+  "state": {
+    "recipe": {
+      "name": "The Upswing",
+      "rationale": "Softened the sharp grapefruit and leaned more into smooth iced tea to keep it gentle without adding heavy sweetness.",
+      "pours": [
+        {
+          "channel": 1,
+          "ml": 45
+        },
+        {
+          "channel": 3,
+          "ml": 25
+        },
+        {
+          "channel": 4,
+          "ml": 45
+        }
+      ],
+      "ml_total": 115,
+      "mood": "bright",
+      "confidence": 0.7,
+      "stir_seconds": 0
+    },
+    "version": 3,
+    "turn": 4,
+    "ledger": [
+      {
+        "kind": "sample",
+        "version": 1,
+        "turn": 1,
+        "sample_total_ml": 15,
+        "simulation_only": true,
+        "pours": [
+          {
+            "channel": 1,
+            "ml": 7.826
+          },
+          {
+            "channel": 3,
+            "ml": 2.609
+          },
+          {
+            "channel": 4,
+            "ml": 4.565
+          }
+        ]
+      },
+      {
+        "kind": "sample",
+        "version": 2,
+        "turn": 2,
+        "sample_total_ml": 15,
+        "simulation_only": true,
+        "pours": [
+          {
+            "channel": 1,
+            "ml": 5.87
+          },
+          {
+            "channel": 3,
+            "ml": 4.565
+          },
+          {
+            "channel": 4,
+            "ml": 4.565
+          }
+        ]
+      },
+      {
+        "kind": "sample",
+        "version": 3,
+        "turn": 3,
+        "sample_total_ml": 15,
+        "simulation_only": true,
+        "pours": [
+          {
+            "channel": 1,
+            "ml": 5.87
+          },
+          {
+            "channel": 3,
+            "ml": 3.261
+          },
+          {
+            "channel": 4,
+            "ml": 5.87
+          }
+        ]
+      },
+      {
+        "kind": "final",
+        "version": 3,
+        "simulation_only": true,
+        "recipe": {
+          "name": "The Upswing",
+          "rationale": "Softened the sharp grapefruit and leaned more into smooth iced tea to keep it gentle without adding heavy sweetness.",
+          "pours": [
+            {
+              "channel": 1,
+              "ml": 45
+            },
+            {
+              "channel": 3,
+              "ml": 25
+            },
+            {
+              "channel": 4,
+              "ml": 45
+            }
+          ],
+          "ml_total": 115,
+          "mood": "bright",
+          "confidence": 0.7,
+          "stir_seconds": 0
+        }
+      }
+    ],
+    "status": "served",
+    "pending_final": false,
+    "updates_left": 0
+  }
+}
