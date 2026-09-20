@@ -1,5 +1,20 @@
 # Vocal LM Experiment
 
+## Integrated policy update
+
+The harness now imports `catalog.py` and `negotiation.py` from the sibling
+`voice_decipher_2` backend. The physical bottle order is authoritative: orange,
+cranberry, lime cordial, ginger ale, grape, apple on channels 1-6. Samples are
+simulated at **0.08x the proposed final recipe**, not a fixed 15 mL. Proposals
+use the deployed limits: 130 mL total, 10-60 mL per ingredient, lime cordial at
+most 20 mL. Explicit exclusions use the `set_exclusions` tool and persist in the
+session validator. The default Gemini model is `google/gemini-3.8-flash`.
+
+Historical recordings and `representitive-data` are retained unchanged; their
+grapefruit/iced-tea labels and 15 mL samples describe the old experiment. For a
+new exclusion trial record a request to exclude **lime cordial**, not grapefruit.
+The existing report reader remains compatible with historical logs.
+
 Turn-based OpenRouter audio experiment for MixMind (Gemini by default). No microphone capture, frontend,
 or hardware connection: you supply recorded `.m4a` files and inspect terminal
 output and JSON logs. No pump module is imported. Gemini receives the audio,
@@ -28,7 +43,7 @@ Set your key in the terminal (not in a tracked file):
 
 ```powershell
 $env:OPENROUTER_API_KEY = "your-openrouter-key"
-$env:OPENROUTER_MODEL = "google/gemini-2.5-flash"
+$env:OPENROUTER_MODEL = "google/gemini-3.8-flash"
 .\.venv\Scripts\python.exe harness.py
 ```
 
@@ -89,10 +104,10 @@ Paths are relative to this experiment folder, regardless of terminal directory.
    Acceptance requests finalization; `/pour` supplies explicit local confirmation.
 2. **Limit:** repeat the first three clips above, then `fourth.m4a`.
    No fourth revision or sample may execute. End with `/pour` or `/cancel`.
-3. **Constraint memory:** new session: `exclude.m4a`, `tart.m4a`, `gentle.m4a`.
-   Channel 3 must remain absent. The current experiment asks the model to preserve
-   semantic constraints; the validator does NOT independently understand exclusions.
-   If it reintroduces grapefruit, record that as a failed experiment.
+3. **Constraint memory:** use a newly recorded lime-cordial exclusion, then
+   `tart.m4a`, `gentle.m4a`. Channel 3 must remain absent after the model records
+   the exclusion with `set_exclusions`. The validator enforces recorded exclusions;
+   interpreting the spoken exclusion correctly still depends on the model.
 4. **Correction:** new session: `flat.m4a`, `correct.m4a`.
    Expect acknowledgement of the correction without insisting the user is tired.
 5. **Ambiguity:** new session: `flat.m4a`, `vague.m4a`.
@@ -128,7 +143,7 @@ patterns from model variability; the model is not deterministic.
   first-proposal baseline from a previous sampled recipe. CLI output and Markdown
   reports show these verified changes. The report reader also supports older
   logs using the former `changes` argument name.
-- `pour_sample`: one simulated 15 ml sample per version in a separate tasting cup.
+- `pour_sample`: one simulated 0.08x sample per version in a separate tasting cup.
   Proportions are scaled from the full recipe. Duplicate calls do not dispense again.
 - `finish_and_pour`: requests finalization; `/pour` actually records the simulated
   final pour. The operator can use `/pour` at any prompt once a proposal exists.
@@ -152,10 +167,11 @@ such as "Your drink pairs citrus with ginger ale...", only if those ingredients
 are present, rather than "I added ginger ale...". Then use `tart.m4a`: comparative
 language should refer to the drink proposed in the preceding turn.
 Each subsequent utterance is evidence, not a replacement for the negotiated recipe.
-Final recipes require 2-6 distinct channels, 10-80 ml each, <=220 ml total.
+Final recipes require 2-6 distinct channels, 10-60 ml each, <=130 ml total;
+channel 3 lime cordial is capped at 20 ml.
 
-The ingredient catalog is explicitly hypothetical and mirrors the current kiosk
-labels. Actual bottle sweetness must be checked before evaluating taste claims.
+The ingredient catalog follows the deployed backend bottle definitions.
+Actual bottle sweetness must be checked before evaluating taste claims.
 The simulated samples deliberately bypass the hardware's 10 ml PER INGREDIENT
 minimum. They are not executable hardware recipes. Minimum repeatable doses,
 cup handling, and taste fidelity require a separate physical experiment.

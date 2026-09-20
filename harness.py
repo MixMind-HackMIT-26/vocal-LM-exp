@@ -17,14 +17,9 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parent
 BACKEND = ROOT.parent / "voice_decipher_2"
-CATALOG = {
-    1: {"name": "Orange juice", "profile": "sweet, citrus"},
-    2: {"name": "Cranberry", "profile": "tart; sweetness depends on bottle"},
-    3: {"name": "Grapefruit", "profile": "bitter, tart citrus"},
-    4: {"name": "Iced tea", "profile": "tea; sweetness depends on bottle"},
-    5: {"name": "Apple juice", "profile": "sweet, fruity"},
-    6: {"name": "Ginger ale", "profile": "sweet, carbonated, ginger"},
-}
+sys.path.insert(0, str(BACKEND))
+from catalog import CATALOG, SAMPLE_RATIO, validate
+from negotiation import Session
 PROMPT = """You are MixMind, a concise conversational drink bartender.
 You speak as the complete MixMind product: voice analysis, recipe selection,
 and conversation are all parts of YOU, not separate parties. The guest has
@@ -50,7 +45,9 @@ the validated recipe. Do not claim more or less of something unless the actual
 guest-visible recipes support that comparison.
 Listen to the attached user audio. Acoustic measurements are observations, not
 proof of emotions. Respect corrections and explicit ingredient exclusions.
-The catalog is an experimental placeholder, not a verified physical inventory.
+The catalog is the deployed backend bottle mapping. Final servings have 2-6
+ingredients, 10-60 ml each, lime cordial at most 20 ml, total at most 130 ml.
+Use set_exclusions to persist explicit excluded channels before proposing edits.
 On the first turn, use the decipher proposal as the starting point. On later
 turns edit the CURRENT recipe, not the new decipher proposal. Short utterances
 are weak acoustic evidence. Preserve preferences from all preceding turns.
@@ -74,135 +71,6 @@ If a tool fails, correct the request or explain; do not invent success.
 """
 
 
-def validate(recipe):
-    pours = recipe.get("pours", [])
-    if not 2 <= len(pours) <= 6:
-        raise ValueError("A recipe needs 2-6 ingredients")
-    channels = set()
-    for p in pours:
-        ch, ml = p["channel"], p["ml"]
-        if type(ch) is not int or ch not in CATALOG or ch in channels:
-            raise ValueError("Invalid or duplicate channel")
-        if type(ml) is not int or not 10 <= ml <= 80:
-            raise ValueError("Each ingredient needs an integer 10-80 ml")
-        channels.add(ch)
-    if sum(p["ml"] for p in pours) > 220:
-        raise ValueError("Maximum final volume is 220 ml")
-    if not isinstance(recipe.get("name"), str) or not 1 <= len(recipe["name"].strip()) <= 80:
-        raise ValueError("Drink name must be 1-80 characters")
-
-
-class Session:
-    def __init__(self):
-        self.recipe = None
-        self.version = 0
-        self.turn = 0
-        self.revised_turn = -1
-        self.ledger = []
-        self.status = "active"
-        self.pending_final = False
-
-    def snapshot(self):
-        return copy.deepcopy(dict(recipe=self.recipe, version=self.version,
-                                  turn=self.turn, ledger=self.ledger,
-                                  status=self.status, pending_final=self.pending_final,
-                                  updates_left=3 - self.version))
-
-    def begin_turn(self, baseline):
-        if self.status != "active":
-            raise ValueError("Session is closed")
-        validate(baseline)
-        self.turn += 1
-        self.pending_final = False
-        if self.recipe is None:
-            self.recipe = copy.deepcopy(baseline)
-
-    def call(self, name, args):
-        try:
-            # Return prior dispensing results before checking closed state.
-            if name in ("pour_sample", "finish_and_pour"):
-                kind = "sample" if name == "pour_sample" else "final"
-                for event in self.ledger:
-                    if event["kind"] == kind and event["version"] == args.get("recipe_version"):
-                        return {"ok": True, "duplicate": True, "event": event}
-            if self.status != "active":
-                raise ValueError("Session is closed")
-            if name == "cancel_session":
-                self.status, self.pending_final = "cancelled", False
-                return {"ok": True, "status": self.status}
-            if name == "revise_drink":
-                if args["expected_version"] != self.version:
-                    raise ValueError("Stale recipe version")
-                if self.version >= 3 or self.revised_turn == self.turn:
-                    raise ValueError("Revision limit reached")
-                if self.version and not any(e["kind"] == "sample" and e["version"] == self.version
-                                            for e in self.ledger):
-                    raise ValueError("Sample the current proposal before revising again")
-                candidate = copy.deepcopy(self.recipe)
-                amounts = {p["channel"]: p["ml"] for p in candidate["pours"]}
-                before_amounts = amounts.copy()
-                previous_version = self.version
-                seen = set()
-                for change in args["set_amounts"]:
-                    ch, ml = change["channel"], change["ml"]
-                    if type(ch) is not int or ch not in CATALOG or ch in seen:
-                        raise ValueError("Invalid or duplicate change channel")
-                    if type(ml) is not int:
-                        raise ValueError("Amounts must be integers")
-                    seen.add(ch)
-                    if ml == 0:
-                        amounts.pop(ch, None)
-                    else:
-                        amounts[ch] = ml
-                candidate.update(name=args["name"], rationale=args["explanation"],
-                                 pours=[{"channel": ch, "ml": ml} for ch, ml in sorted(amounts.items())],
-                                 stir_seconds=0)
-                validate(candidate)
-                amount_diff = [
-                    {"channel": ch, "ingredient": CATALOG[ch]["name"],
-                     "before_ml": before_amounts.get(ch, 0), "after_ml": amounts.get(ch, 0),
-                     "delta_ml": amounts.get(ch, 0) - before_amounts.get(ch, 0)}
-                    for ch in sorted(before_amounts.keys() | amounts.keys())
-                    if before_amounts.get(ch, 0) != amounts.get(ch, 0)]
-                self.recipe = candidate
-                self.version += 1
-                self.revised_turn = self.turn
-                self.pending_final = False
-                return {"ok": True, "state": self.snapshot(), "amount_diff": amount_diff,
-                        "diff_base": "internal_baseline" if previous_version == 0 else "previous_sampled_recipe",
-                        "previous_version": previous_version}
-            if name not in ("pour_sample", "finish_and_pour"):
-                raise ValueError("Unknown tool")
-            if args["recipe_version"] != self.version or not self.version:
-                raise ValueError("No matching committed recipe")
-            if name == "finish_and_pour":
-                if self.revised_turn == self.turn:
-                    raise ValueError("Wait for user feedback after this proposal")
-                self.pending_final = True
-                return {"ok": True, "status": "awaiting_operator_confirmation",
-                        "message": "Use /pour to confirm or /cancel to discard"}
-            total = sum(p["ml"] for p in self.recipe["pours"])
-            event = {"kind": "sample", "version": self.version, "turn": self.turn,
-                     "sample_total_ml": 15, "simulation_only": True,
-                     "pours": [{"channel": p["channel"], "ml": round(p["ml"] * 15 / total, 3)}
-                               for p in self.recipe["pours"]]}
-            self.ledger.append(event)
-            return {"ok": True, "event": event, "wait_for_user": True}
-        except (KeyError, TypeError, ValueError) as exc:
-            return {"ok": False, "error": str(exc)}
-
-    def confirm_final(self):
-        if self.status == "served":
-            return {"ok": True, "duplicate": True}
-        if self.status != "active" or not self.version:
-            return {"ok": False, "error": "No active committed recipe"}
-        validate(self.recipe)
-        self.ledger.append({"kind": "final", "version": self.version,
-                            "simulation_only": True, "recipe": copy.deepcopy(self.recipe)})
-        self.status, self.pending_final = "served", False
-        return {"ok": True, "state": self.snapshot()}
-
-
 def declarations():
     def tool(name, description, properties, required):
         return dict(name=name, description=description,
@@ -218,7 +86,9 @@ def declarations():
               "set_amounts": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
                   "channel": integer, "ml": integer}, "required": ["channel", "ml"]}}},
              ["expected_version", "name", "explanation", "set_amounts"]),
-        tool("pour_sample", "Simulate a 15 ml sample in a SEPARATE cup, once per version.",
+        tool("set_exclusions", "Persist explicitly excluded ingredients for the session.",
+             {"channels": {"type": "ARRAY", "items": integer}}, ["channels"]),
+        tool("pour_sample", "Simulate an 8 percent sample in a SEPARATE cup, once per version.",
              {"recipe_version": integer}, ["recipe_version"]),
         tool("finish_and_pour", "Request final dispensing after explicit acceptance; operator confirms.",
              {"recipe_version": integer}, ["recipe_version"]),
@@ -458,7 +328,7 @@ def run_turn(api_key, model, history, session, path, evidence, mode, log):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--model", default=os.environ.get("OPENROUTER_MODEL", "google/gemini-2.5-flash"))
+    parser.add_argument("--model", default=os.environ.get("OPENROUTER_MODEL", "google/gemini-3.8-flash"))
     parser.add_argument("--mode", choices=["combined", "audio-only", "features-only"], default="combined")
     parser.add_argument("--analyze", type=Path, help="Analyze one m4a locally without OpenRouter")
     args = parser.parse_args()

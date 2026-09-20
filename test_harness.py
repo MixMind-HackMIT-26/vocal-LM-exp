@@ -8,7 +8,7 @@ from harness import Session, run_turn, sample_followup
 
 
 BASE = {"name": "Baseline", "pours": [{"channel": 1, "ml": 60},
-                                      {"channel": 5, "ml": 40}, {"channel": 6, "ml": 50}]}
+                                      {"channel": 5, "ml": 30}, {"channel": 6, "ml": 40}]}
 
 
 class OpenRouterTests(unittest.TestCase):
@@ -93,8 +93,8 @@ class SessionTests(unittest.TestCase):
         self.assertEqual(result["diff_base"], "internal_baseline")
         self.assertEqual([(d["channel"], d["before_ml"], d["after_ml"], d["delta_ml"])
                           for d in result["amount_diff"]],
-                         [(1, 60, 45, -15), (2, 0, 30, 30), (5, 40, 0, -40)])
-        self.assertEqual(result["state"]["recipe"]["pours"][-1], {"channel": 6, "ml": 50})
+                         [(1, 60, 45, -15), (2, 0, 30, 30), (5, 30, 0, -30)])
+        self.assertEqual(result["state"]["recipe"]["pours"][-1], {"channel": 6, "ml": 40})
         s.call("pour_sample", {"recipe_version": 1})
         s.begin_turn(BASE)
         result = self.proposal(s)
@@ -130,7 +130,7 @@ class SessionTests(unittest.TestCase):
         s.call("pour_sample", args)
         self.assertTrue(s.call("pour_sample", args)["duplicate"])
         self.assertEqual(len(s.ledger), 1)
-        self.assertAlmostEqual(sum(p["ml"] for p in s.ledger[0]["pours"]), 15, places=2)
+        self.assertAlmostEqual(sum(p["ml"] for p in s.ledger[0]["pours"]), 130 * 0.08, places=2)
         self.assertFalse(s.call("finish_and_pour", args)["ok"])
         s.begin_turn(BASE)
         self.assertTrue(s.call("finish_and_pour", args)["ok"])
